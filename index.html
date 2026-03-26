@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awaz — Apni Awaaz Buland Karo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Ambient Background Glow -->
+<div class="bg-glow"></div>
+
+<!-- ══════════════ LEFT SIDEBAR ══════════════ -->
+<nav class="sidebar">
+
+  <!-- Logo -->
+  <div class="logo-wrap">
+    <div class="logo-mark">🎙️</div>
+    <div class="logo-text">A<span>waz</span></div>
+  </div>
+
+  <div class="nav-section-title">Menu</div>
+
+  <div class="nav-item active" onclick="navClick(this)">
+    <div class="nav-icon">🏠</div>
+    <span>Home Feed</span>
+  </div>
+  <div class="nav-item" onclick="navClick(this)">
+    <div class="nav-icon">🔍</div>
+    <span>Explore</span>
+  </div>
+  <div class="nav-item" onclick="navClick(this)">
+    <div class="nav-icon">🔔</div>
+    <span>Notifications</span>
+    <span class="badge">7</span>
+  </div>
+  <div class="nav-item" onclick="navClick(this)">
+    <div class="nav-icon">✉️</div>
+    <span>Messages</span>
+    <span class="badge">3</span>
+  </div>
+  <div class="nav-item" onclick="navClick(this)">
+    <div class="nav-icon">📌</div>
+    <span>Bookmarks</span>
+  </div>
+  <div class="nav-item" onclick="navClick(this)">
+    <div class="nav-icon">👤</div>
+    <span>Profile</span>
+  </div>
+
+  <!-- New Post Button -->
+  <button class="post-btn" onclick="openModal()">
+    <span>✦</span>
+    <span>Naya Post</span>
+  </button>
+
+  <!-- Logged-in User -->
+  <div class="sidebar-user">
+    <div class="avatar sz-sm online" style="background:linear-gradient(135deg,#f5c842,#ff8c00)">WA</div>
+    <div class="user-info">
+      <div class="user-name">Waqas Arshad</div>
+      <div class="user-handle">@waqas_arshad</div>
+    </div>
+    <span style="color:var(--muted);font-size:14px">⋯</span>
+  </div>
+
+</nav>
+
+<!-- ══════════════ MAIN FEED ══════════════ -->
+<main class="main">
+
+  <!-- Sticky Header -->
+  <div class="feed-header">
+    <div class="feed-top">
+      <div class="feed-title">Apka Feed ✨</div>
+      <div class="feed-actions">
+        <button class="icon-btn" title="Filter">⚡</button>
+        <button class="icon-btn" title="Refresh" onclick="refresh()">↺</button>
+      </div>
+    </div>
+    <div class="feed-tabs">
+      <div class="tab active" onclick="switchTab(this)">Sab ke Liye</div>
+      <div class="tab" onclick="switchTab(this)">Following</div>
+      <div class="tab" onclick="switchTab(this)">Trending</div>
+    </div>
+  </div>
+
+  <!-- Story Bar -->
+  <div class="story-bar">
+    <div class="story-item">
+      <div class="story-ring">
+        <div class="avatar sz-sm" style="background:linear-gradient(135deg,#f5c842,#ff8c00)">WA</div>
+      </div>
+      <div class="story-label">Aapki Story</div>
+    </div>
+    <div class="story-item">
+      <div class="story-ring">
+        <div class="avatar sz-sm" style="background:linear-gradient(135deg,#ec4899,#a855f7)">AY</div>
+      </div>
+      <div class="story-label">Ayan</div>
+    </div>
+    <div class="story-item">
+      <div class="story-ring">
+        <div class="avatar sz-sm" style="background:linear-gradient(135deg,#22d3a5,#3b82f6)">AL</div>
+      </div>
+      <div class="story-label">Aliza</div>
+    </div>
+    <div class="story-item">
+      <div class="story-ring seen">
+        <div class="avatar sz-sm" style="background:linear-gradient(135deg,#f97316,#ef4444)">LA</div>
+      </div>
+      <div class="story-label">Laiba</div>
+    </div>
+    <div class="story-item">
+      <div class="story-ring">
+        <div class="avatar sz-sm" style="background:linear-gradient(135deg,#a78bfa,#ec4899)">HU</div>
+      </div>
+      <div class="story-label">Hussnain</div>
+    </div>
+    <div class="story-item">
+      <div class="story-ring seen">
+        <div class="avatar sz-sm" style="background:linear-gradient(135deg,#34d399,#059669)">AR</div>
+      </div>
+      <div class="story-label">Arshad</div>
+    </div>
+  </div>
+
+  <!-- Composer -->
+  <div class="composer-wrap">
+    <div class="composer-inner">
+      <div class="avatar sz-md online" style="background:linear-gradient(135deg,#f5c842,#ff8c00)">WA</div>
+      <div class="composer-right">
+        <textarea
+          class="composer-textarea"
+          id="comp"
+          placeholder="Kya ho raha hai, Waqas? Apni baat duniya se share karo..."
+          maxlength="280"
+          oninput="onType()"
+        ></textarea>
+
+        <!-- Emoji Tray -->
+        <div id="emojiTray" class="emoji-tray">
+          <button class="ep" onclick="ei('😂')">😂</button>
+          <button class="ep" onclick="ei('❤️')">❤️</button>
+          <button class="ep" onclick="ei('🔥')">🔥</button>
+          <button class="ep" onclick="ei('👏')">👏</button>
+          <button class="ep" onclick="ei('🎉')">🎉</button>
+          <button class="ep" onclick="ei('😭')">😭</button>
+          <button class="ep" onclick="ei('💯')">💯</button>
+          <button class="ep" onclick="ei('🙏')">🙏</button>
+          <button class="ep" onclick="ei('😎')">😎</button>
+          <button class="ep" onclick="ei('🤔')">🤔</button>
+          <button class="ep" onclick="ei('🇵🇰')">🇵🇰</button>
+          <button class="ep" onclick="ei('⭐')">⭐</button>
+          <button class="ep" onclick="ei('💪')">💪</button>
+          <button class="ep" onclick="ei('✨')">✨</button>
+          <button class="ep" onclick="ei('🤩')">🤩</button>
+          <button class="ep" onclick="ei('😍')">😍</button>
+        </div>
+
+        <!-- Composer Footer -->
+        <div class="composer-footer">
+          <div class="composer-tools">
+            <button class="tool-btn" title="Image">🖼️</button>
+            <button class="tool-btn" title="GIF">🎬</button>
+            <button class="tool-btn" title="Emoji" onclick="toggleEmoji()">😊</button>
+            <button class="tool-btn" title="Poll">📊</button>
+            <button class="tool-btn" title="Location">📍</button>
+          </div>
+          <div class="composer-right-actions">
+            <!-- Character Ring -->
+            <div class="char-ring" id="ring">
+              <svg width="28" height="28" viewBox="0 0 28 28">
+                <circle cx="14" cy="14" r="11" fill="none" stroke="var(--border2)" stroke-width="2.5"/>
+                <circle cx="14" cy="14" r="11" fill="none" stroke="var(--gold)" stroke-width="2.5"
+                  stroke-dasharray="69.1" stroke-dashoffset="69.1" id="ringCircle"
+                  stroke-linecap="round"/>
+              </svg>
+              <span class="char-ring-num" id="ringNum">0</span>
+            </div>
+            <button class="send-btn" id="sendBtn" onclick="doPost()" disabled>Post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Tweet Feed -->
+  <div id="feed"></div>
+
+</main>
+
+<!-- ══════════════ RIGHT SIDEBAR ══════════════ -->
+<aside class="right">
+
+  <!-- Search -->
+  <div class="search-box">
+    <span style="color:var(--muted)">🔍</span>
+    <input type="text" placeholder="Awaz mein talash karen...">
+  </div>
+
+  <!-- My Stats -->
+  <div class="widget">
+    <div class="widget-head">📊 Aapki Stats</div>
+    <div class="stats-bar">
+      <div class="stat-cell">
+        <div class="stat-num">248</div>
+        <div class="stat-lbl">Posts</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">1.2K</div>
+        <div class="stat-lbl">Followers</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">391</div>
+        <div class="stat-lbl">Following</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trending Topics -->
+  <div class="widget">
+    <div class="widget-head">🔥 Trending</div>
+    <div id="trendList"></div>
+  </div>
+
+  <!-- Follow Suggestions -->
+  <div class="widget">
+    <div class="widget-head">👥 Logon ko Follow Karo</div>
+    <div id="sugList"></div>
+  </div>
+
+</aside>
+
+<!-- ══════════════ NEW POST MODAL ══════════════ -->
+<div class="overlay" id="overlay" onclick="overlayClick(event)">
+  <div class="modal">
+    <div class="modal-top">
+      <div class="modal-title">✦ Naya Post</div>
+      <button class="x-btn" onclick="closeModal()">✕</button>
+    </div>
+    <div style="display:flex;gap:14px">
+      <div class="avatar sz-md online" style="background:linear-gradient(135deg,#f5c842,#ff8c00)">WA</div>
+      <div style="flex:1">
+        <textarea
+          id="mcomp"
+          class="modal-textarea"
+          placeholder="Aaj kya share karna chahte ho?"
+          maxlength="280"
+          oninput="onMType()"
+        ></textarea>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+          <div style="display:flex;gap:4px">
+            <button class="tool-btn">🖼️</button>
+            <button class="tool-btn">😊</button>
+            <button class="tool-btn">📍</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span id="mcount" style="font-size:12px;color:var(--muted)">280</span>
+            <button class="send-btn" id="mSend" onclick="postModal()" disabled>Post Karo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<!-- JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>
